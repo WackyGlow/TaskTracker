@@ -1,0 +1,413 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Hobby Coding\\TaskTracker\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|c:\\hobby coding\\tasktracker\\tasktracker.domain\\interfaces\\services\\ipersonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|solutionrelative:tasktracker.domain\\interfaces\\services\\ipersonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|c:\\hobby coding\\tasktracker\\tasktracker.infrastructure\\repositories\\taskassignmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|solutionrelative:tasktracker.infrastructure\\repositories\\taskassignmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|c:\\hobby coding\\tasktracker\\tasktracker.infrastructure\\repositories\\personrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|solutionrelative:tasktracker.infrastructure\\repositories\\personrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|c:\\hobby coding\\tasktracker\\tasktracker.domain\\entities\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|solutionrelative:tasktracker.domain\\entities\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2987A43-8791-4436-B399-1AF14CD4A439}|TaskTracker.Application\\TaskTracker.Application.csproj|c:\\hobby coding\\tasktracker\\tasktracker.application\\dtos\\persondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2987A43-8791-4436-B399-1AF14CD4A439}|TaskTracker.Application\\TaskTracker.Application.csproj|solutionrelative:tasktracker.application\\dtos\\persondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2987A43-8791-4436-B399-1AF14CD4A439}|TaskTracker.Application\\TaskTracker.Application.csproj|c:\\hobby coding\\tasktracker\\tasktracker.application\\dtos\\taskitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2987A43-8791-4436-B399-1AF14CD4A439}|TaskTracker.Application\\TaskTracker.Application.csproj|solutionrelative:tasktracker.application\\dtos\\taskitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|c:\\hobby coding\\tasktracker\\tasktracker.domain\\entities\\taskitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|solutionrelative:tasktracker.domain\\entities\\taskitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|c:\\hobby coding\\tasktracker\\tasktracker.domain\\interfaces\\services\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|solutionrelative:tasktracker.domain\\interfaces\\services\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|c:\\hobby coding\\tasktracker\\tasktracker.webapi\\controllers\\peoplecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|solutionrelative:tasktracker.webapi\\controllers\\peoplecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|c:\\hobby coding\\tasktracker\\tasktracker.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|solutionrelative:tasktracker.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|c:\\hobby coding\\tasktracker\\tasktracker.infrastructure\\data\\tasktrackerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|solutionrelative:tasktracker.infrastructure\\data\\tasktrackerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|c:\\hobby coding\\tasktracker\\tasktracker.infrastructure\\repositories\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|solutionrelative:tasktracker.infrastructure\\repositories\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|c:\\hobby coding\\tasktracker\\tasktracker.webapi\\tasktracker.webapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|solutionrelative:tasktracker.webapi\\tasktracker.webapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|c:\\hobby coding\\tasktracker\\tasktracker.webapi\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|solutionrelative:tasktracker.webapi\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|c:\\hobby coding\\tasktracker\\tasktracker.domain\\entities\\taskassignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|solutionrelative:tasktracker.domain\\entities\\taskassignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|c:\\hobby coding\\tasktracker\\tasktracker.infrastructure\\data\\configurations\\taskassignmentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|solutionrelative:tasktracker.infrastructure\\data\\configurations\\taskassignmentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|c:\\hobby coding\\tasktracker\\tasktracker.infrastructure\\data\\configurations\\personconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|solutionrelative:tasktracker.infrastructure\\data\\configurations\\personconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|c:\\hobby coding\\tasktracker\\tasktracker.infrastructure\\data\\configurations\\taskitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}|TaskTracker.Infrastructure\\TaskTracker.Infrastructure.csproj|solutionrelative:tasktracker.infrastructure\\data\\configurations\\taskitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|c:\\hobby coding\\tasktracker\\tasktracker.domain\\interfaces\\repositories\\itaskassignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|solutionrelative:tasktracker.domain\\interfaces\\repositories\\itaskassignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|c:\\hobby coding\\tasktracker\\tasktracker.domain\\interfaces\\repositories\\ipersonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|solutionrelative:tasktracker.domain\\interfaces\\repositories\\ipersonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|c:\\hobby coding\\tasktracker\\tasktracker.domain\\interfaces\\repositories\\itaskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|solutionrelative:tasktracker.domain\\interfaces\\repositories\\itaskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|c:\\hobby coding\\tasktracker\\tasktracker.domain\\tasktracker.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}|TaskTracker.Domain\\TaskTracker.Domain.csproj|solutionrelative:tasktracker.domain\\tasktracker.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|c:\\hobby coding\\tasktracker\\tasktracker.webapi\\filters\\validationfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|solutionrelative:tasktracker.webapi\\filters\\validationfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|c:\\hobby coding\\tasktracker\\tasktracker.webapi\\filters\\exceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}|TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj|solutionrelative:tasktracker.webapi\\filters\\exceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PersonDTO.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Application\\DTOs\\PersonDTO.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Application\\DTOs\\PersonDTO.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Application\\DTOs\\PersonDTO.cs",
+              "RelativeToolTip": "TaskTracker.Application\\DTOs\\PersonDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T20:59:33.611Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TaskItemDTO.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Application\\DTOs\\TaskItemDTO.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Application\\DTOs\\TaskItemDTO.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Application\\DTOs\\TaskItemDTO.cs",
+              "RelativeToolTip": "TaskTracker.Application\\DTOs\\TaskItemDTO.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAA1wBUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T20:59:07.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IPersonService.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Interfaces\\Services\\IPersonService.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Domain\\Interfaces\\Services\\IPersonService.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Interfaces\\Services\\IPersonService.cs",
+              "RelativeToolTip": "TaskTracker.Domain\\Interfaces\\Services\\IPersonService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T20:57:28.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ITaskService.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Interfaces\\Services\\ITaskService.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Domain\\Interfaces\\Services\\ITaskService.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Interfaces\\Services\\ITaskService.cs",
+              "RelativeToolTip": "TaskTracker.Domain\\Interfaces\\Services\\ITaskService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T20:55:29.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PeopleController.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\Controllers\\PeopleController.cs",
+              "RelativeDocumentMoniker": "TaskTracker.WebAPI\\Controllers\\PeopleController.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\Controllers\\PeopleController.cs",
+              "RelativeToolTip": "TaskTracker.WebAPI\\Controllers\\PeopleController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T22:00:47.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TaskItems.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Entities\\TaskItems.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Domain\\Entities\\TaskItems.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Entities\\TaskItems.cs",
+              "RelativeToolTip": "TaskTracker.Domain\\Entities\\TaskItems.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAA5wBkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T22:47:20.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TaskTrackerDbContext.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Data\\TaskTrackerDbContext.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Infrastructure\\Data\\TaskTrackerDbContext.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Data\\TaskTrackerDbContext.cs",
+              "RelativeToolTip": "TaskTracker.Infrastructure\\Data\\TaskTrackerDbContext.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwBcAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T22:46:06.221Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Person.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Entities\\Person.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Domain\\Entities\\Person.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Entities\\Person.cs",
+              "RelativeToolTip": "TaskTracker.Domain\\Entities\\Person.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T22:47:34.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PersonRepository.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Repositories\\PersonRepository.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Infrastructure\\Repositories\\PersonRepository.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Repositories\\PersonRepository.cs",
+              "RelativeToolTip": "TaskTracker.Infrastructure\\Repositories\\PersonRepository.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAgwBQAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T14:24:02.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TaskAssignmentRepository.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Repositories\\TaskAssignmentRepository.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Infrastructure\\Repositories\\TaskAssignmentRepository.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Repositories\\TaskAssignmentRepository.cs",
+              "RelativeToolTip": "TaskTracker.Infrastructure\\Repositories\\TaskAssignmentRepository.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAIwAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T14:41:12.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TaskRepository.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Repositories\\TaskRepository.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Infrastructure\\Repositories\\TaskRepository.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Repositories\\TaskRepository.cs",
+              "RelativeToolTip": "TaskTracker.Infrastructure\\Repositories\\TaskRepository.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAWwBMAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T22:52:18.424Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "TaskTracker.WebAPI\\Program.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\Program.cs",
+              "RelativeToolTip": "TaskTracker.WebAPI\\Program.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T22:52:54.884Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TaskTracker.WebAPI.csproj",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj",
+              "RelativeDocumentMoniker": "TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj",
+              "RelativeToolTip": "TaskTracker.WebAPI\\TaskTracker.WebAPI.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-19T21:57:48.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TaskAssignment.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Entities\\TaskAssignment.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Domain\\Entities\\TaskAssignment.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Entities\\TaskAssignment.cs",
+              "RelativeToolTip": "TaskTracker.Domain\\Entities\\TaskAssignment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T22:47:46.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "TasksController.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\Controllers\\TasksController.cs",
+              "RelativeDocumentMoniker": "TaskTracker.WebAPI\\Controllers\\TasksController.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\Controllers\\TasksController.cs",
+              "RelativeToolTip": "TaskTracker.WebAPI\\Controllers\\TasksController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T22:00:35.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "TaskItemConfiguration.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Data\\Configurations\\TaskItemConfiguration.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Infrastructure\\Data\\Configurations\\TaskItemConfiguration.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Data\\Configurations\\TaskItemConfiguration.cs",
+              "RelativeToolTip": "TaskTracker.Infrastructure\\Data\\Configurations\\TaskItemConfiguration.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwB8AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T22:51:03.024Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "PersonConfiguration.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Data\\Configurations\\PersonConfiguration.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Infrastructure\\Data\\Configurations\\PersonConfiguration.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Data\\Configurations\\PersonConfiguration.cs",
+              "RelativeToolTip": "TaskTracker.Infrastructure\\Data\\Configurations\\PersonConfiguration.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAcwCAAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T14:16:43.444Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TaskAssignmentConfiguration.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Data\\Configurations\\TaskAssignmentConfiguration.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Infrastructure\\Data\\Configurations\\TaskAssignmentConfiguration.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Infrastructure\\Data\\Configurations\\TaskAssignmentConfiguration.cs",
+              "RelativeToolTip": "TaskTracker.Infrastructure\\Data\\Configurations\\TaskAssignmentConfiguration.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T14:48:57.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ITaskAssignment.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Interfaces\\Repositories\\ITaskAssignment.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Domain\\Interfaces\\Repositories\\ITaskAssignment.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Interfaces\\Repositories\\ITaskAssignment.cs",
+              "RelativeToolTip": "TaskTracker.Domain\\Interfaces\\Repositories\\ITaskAssignment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T14:40:44.464Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IPersonRepository.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Interfaces\\Repositories\\IPersonRepository.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Domain\\Interfaces\\Repositories\\IPersonRepository.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Interfaces\\Repositories\\IPersonRepository.cs",
+              "RelativeToolTip": "TaskTracker.Domain\\Interfaces\\Repositories\\IPersonRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T14:23:32.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ITaskRepository.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Interfaces\\Repositories\\ITaskRepository.cs",
+              "RelativeDocumentMoniker": "TaskTracker.Domain\\Interfaces\\Repositories\\ITaskRepository.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\Interfaces\\Repositories\\ITaskRepository.cs",
+              "RelativeToolTip": "TaskTracker.Domain\\Interfaces\\Repositories\\ITaskRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T22:51:37.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "TaskTracker.Domain.csproj",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\TaskTracker.Domain.csproj",
+              "RelativeDocumentMoniker": "TaskTracker.Domain\\TaskTracker.Domain.csproj",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\TaskTracker.Domain.csproj",
+              "RelativeToolTip": "TaskTracker.Domain\\TaskTracker.Domain.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-19T22:02:47.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ValidationFilter.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\Filters\\ValidationFilter.cs",
+              "RelativeDocumentMoniker": "TaskTracker.WebAPI\\Filters\\ValidationFilter.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\Filters\\ValidationFilter.cs",
+              "RelativeToolTip": "TaskTracker.WebAPI\\Filters\\ValidationFilter.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T21:59:06.017Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ExceptionFilter.cs",
+              "DocumentMoniker": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\Filters\\ExceptionFilter.cs",
+              "RelativeDocumentMoniker": "TaskTracker.WebAPI\\Filters\\ExceptionFilter.cs",
+              "ToolTip": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.WebAPI\\Filters\\ExceptionFilter.cs",
+              "RelativeToolTip": "TaskTracker.WebAPI\\Filters\\ExceptionFilter.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T21:58:54.748Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
