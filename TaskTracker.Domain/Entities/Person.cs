@@ -13,6 +13,6 @@ namespace TaskTracker.Domain.Entities
         public string Email { get; set; }
 
         // Relationships
-        public required ICollection<TaskAssignment> Assignments { get; set; }
+        public ICollection<TaskAssignment> Assignments { get; set; }
     }
 }

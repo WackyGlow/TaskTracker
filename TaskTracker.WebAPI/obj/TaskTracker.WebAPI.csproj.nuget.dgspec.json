@@ -32,7 +32,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\TaskTracker.Domain.csproj": {
+                "projectPath": "C:\\Hobby Coding\\TaskTracker\\TaskTracker.Domain\\TaskTracker.Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

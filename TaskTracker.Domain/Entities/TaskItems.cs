@@ -22,6 +22,6 @@ namespace TaskTracker.Domain.Entities
         public string RecurrenceUnit { get; set; } // "Days", "Weeks", "Months", etc.
 
         // Relationships
-        public required ICollection<TaskAssignment> Assignments { get; set; }
+        public ICollection<TaskAssignment> Assignments { get; set; }
     }
 }

@@ -1014,7 +1014,8 @@
           "FluentValidation": "11.10.0",
           "MediatR": "12.4.1",
           "MediatR.Extensions.Microsoft.DependencyInjection": "11.1.0",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.4"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.4",
+          "TaskTracker.Domain": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TaskTracker.Application.dll": {}

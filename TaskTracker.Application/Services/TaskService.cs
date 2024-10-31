@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TaskTracker.Application.DTOs;
-using TaskTracker.Application.Features.Tasks.Commands;
-using TaskTracker.Domain.Interfaces.Services;
 
 namespace TaskTracker.Application.Services
 {
+    using TaskTracker.Application.DTOs;
+    using TaskTracker.Application.Exceptions;
+    using TaskTracker.Application.Features.Tasks.Commands;
+    using TaskTracker.Domain.Entities;
+    using TaskTracker.Domain.Interfaces.Repositories;
+    using TaskTracker.Domain.Interfaces.Services;
+
     public class TaskService : ITaskService
     {
         private readonly ITaskRepository _taskRepository;
@@ -20,7 +24,7 @@ namespace TaskTracker.Application.Services
 
         public async Task<IEnumerable<TaskItemDto>> GetAllTasksAsync()
         {
-            var tasks = await _taskRepository.GetAllTasksAsync();
+            var tasks = await _taskRepository.GetAllAsync();
             return tasks.Select(task => new TaskItemDto
             {
                 Id = task.Id,
@@ -38,7 +42,7 @@ namespace TaskTracker.Application.Services
 
         public async Task<TaskItemDto> GetTaskByIdAsync(int id)
         {
-            var task = await _taskRepository.GetTaskByIdAsync(id);
+            var task = await _taskRepository.GetByIdAsync(id);
             if (task == null) throw new NotFoundException($"Task with ID {id} not found.");
 
             return new TaskItemDto
@@ -71,7 +75,7 @@ namespace TaskTracker.Application.Services
                 RecurrenceUnit = command.RecurrenceUnit
             };
 
-            await _taskRepository.AddTaskAsync(task);
+            await _taskRepository.AddAsync(task);
 
             return new TaskItemDto
             {
@@ -90,7 +94,7 @@ namespace TaskTracker.Application.Services
 
         public async Task UpdateTaskAsync(UpdateTaskCommand command)
         {
-            var task = await _taskRepository.GetTaskByIdAsync(command.Id);
+            var task = await _taskRepository.GetByIdAsync(command.Id);
             if (task == null) throw new NotFoundException($"Task with ID {command.Id} not found.");
 
             task.Name = command.Name;
@@ -103,15 +107,16 @@ namespace TaskTracker.Application.Services
             task.RecurrenceInterval = command.RecurrenceInterval;
             task.RecurrenceUnit = command.RecurrenceUnit;
 
-            await _taskRepository.UpdateTaskAsync(task);
+            await _taskRepository.UpdateAsync(task);
         }
 
         public async Task DeleteTaskAsync(int id)
         {
-            var task = await _taskRepository.GetTaskByIdAsync(id);
+            var task = await _taskRepository.GetByIdAsync(id);
             if (task == null) throw new NotFoundException($"Task with ID {id} not found.");
 
-            await _taskRepository.DeleteTaskAsync(id);
+            await _taskRepository.DeleteAsync(id);
         }
     }
+
 }
