@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskTracker.Application.DTOs;
+using TaskTracker.Application.Features.People.Commands;
 
 namespace TaskTracker.Domain.Interfaces.Services
 {

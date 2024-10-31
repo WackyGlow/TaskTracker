@@ -10,7 +10,6 @@
     <Folder Include="Features\Categories\" />
     <Folder Include="Features\Notifications\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>

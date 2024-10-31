@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskTracker.Application.Features.People.Commands
 {
-    internal class CreatePersonCommand
+    public class CreatePersonCommand
     {
+        public required string Name { get; set; }
+        public required string Email { get; set; }
     }
 }

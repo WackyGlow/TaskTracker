@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TaskTracker.Application.Features.People.Commands
 {
-    internal class UpdatePersonCommand
+    public class UpdatePersonCommand
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
     }
+
 }

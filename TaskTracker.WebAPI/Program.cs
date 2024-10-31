@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TaskTracker.Domain.Interfaces.Repositories;
+using TaskTracker.Domain.Interfaces.Services;
 using TaskTracker.Infrastructure.Data;
 using TaskTracker.Infrastructure.Repositories;
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<TaskTrackerDbContext>(options =>
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<ITaskAssignmentRepository, TaskAssignmentRepository>();
+builder.Services.AddScoped<IPersonService, PersonService>();
 
 // Add services to the container.
 
