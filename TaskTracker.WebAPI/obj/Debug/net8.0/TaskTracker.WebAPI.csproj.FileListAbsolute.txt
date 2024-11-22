@@ -108,3 +108,9 @@ C:\Hobby Coding\TaskTracker\TaskTracker.WebAPI\obj\Debug\net8.0\refint\TaskTrack
 C:\Hobby Coding\TaskTracker\TaskTracker.WebAPI\obj\Debug\net8.0\TaskTracker.WebAPI.pdb
 C:\Hobby Coding\TaskTracker\TaskTracker.WebAPI\obj\Debug\net8.0\TaskTracker.WebAPI.genruntimeconfig.cache
 C:\Hobby Coding\TaskTracker\TaskTracker.WebAPI\obj\Debug\net8.0\ref\TaskTracker.WebAPI.dll
+C:\Hobby Coding\TaskTracker\TaskTracker.WebAPI\bin\Debug\net8.0\MediatR.dll
+C:\Hobby Coding\TaskTracker\TaskTracker.WebAPI\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\Hobby Coding\TaskTracker\TaskTracker.WebAPI\bin\Debug\net8.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Hobby Coding\TaskTracker\TaskTracker.WebAPI\bin\Debug\net8.0\TaskTracker.Application.dll
+C:\Hobby Coding\TaskTracker\TaskTracker.WebAPI\bin\Debug\net8.0\TaskTracker.Application.pdb
+C:\Hobby Coding\TaskTracker\TaskTracker.WebAPI\obj\Debug\net8.0\TaskTracker.WebAPI.sourcelink.json

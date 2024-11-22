@@ -8,7 +8,8 @@ namespace TaskTracker.Application.Features.People.Commands
 {
     public class CreatePersonCommand
     {
-        public required string Name { get; set; }
-        public required string Email { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public int Age { get; set; }
     }
 }

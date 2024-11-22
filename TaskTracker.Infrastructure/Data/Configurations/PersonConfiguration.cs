@@ -16,13 +16,17 @@ namespace TaskTracker.Infrastructure.Data.Configurations
             builder.ToTable("People");
 
             builder.HasKey(p => p.Id);
-            builder.Property(p => p.Name)
-                .IsRequired()
-                .HasMaxLength(100);
 
-            builder.Property(p => p.Email)
-                .IsRequired()
-                .HasMaxLength(100);
+            builder.Property(p => p.FirstName)
+                   .IsRequired()
+                   .HasMaxLength(100);
+
+            builder.Property(p => p.LastName)
+                   .IsRequired()
+                   .HasMaxLength(100);
+
+            builder.Property(p => p.Age)
+                   .IsRequired();
 
             // Define relationships
             builder.HasMany(p => p.Assignments)

@@ -398,3 +398,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+TaskTracker.Infrastructure/bin/Debug/net8.0/TaskTracker.Domain.pdb
+TaskTracker.Infrastructure/bin/Debug/net8.0/TaskTracker.Infrastructure.dll
+TaskTracker.Infrastructure/bin/Debug/net8.0/TaskTracker.Infrastructure.pdb

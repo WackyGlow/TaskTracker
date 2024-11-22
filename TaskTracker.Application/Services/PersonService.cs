@@ -27,8 +27,9 @@ namespace TaskTracker.Application.Services
             return people.Select(person => new PersonDto
             {
                 Id = person.Id,
-                Name = person.Name,
-                Email = person.Email
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                Age = person.Age
             });
         }
 
@@ -40,8 +41,9 @@ namespace TaskTracker.Application.Services
             return new PersonDto
             {
                 Id = person.Id,
-                Name = person.Name,
-                Email = person.Email
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                Age = person.Age
             };
         }
 
@@ -49,8 +51,9 @@ namespace TaskTracker.Application.Services
         {
             var person = new Person
             {
-                Name = command.Name,
-                Email = command.Email
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                Age = command.Age
             };
 
             await _personRepository.AddAsync(person);
@@ -58,8 +61,9 @@ namespace TaskTracker.Application.Services
             return new PersonDto
             {
                 Id = person.Id,
-                Name = person.Name,
-                Email = person.Email
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                Age = person.Age
             };
         }
 
@@ -68,8 +72,9 @@ namespace TaskTracker.Application.Services
             var person = await _personRepository.GetByIdAsync(command.Id);
             if (person == null) throw new NotFoundException($"Person with ID {command.Id} not found.");
 
-            person.Name = command.Name;
-            person.Email = command.Email;
+            person.FirstName = command.FirstName;
+            person.LastName = command.LastName;
+            person.Age = command.Age;
 
             await _personRepository.UpdateAsync(person);
         }
@@ -82,4 +87,5 @@ namespace TaskTracker.Application.Services
             await _personRepository.DeleteAsync(id);
         }
     }
+
 }

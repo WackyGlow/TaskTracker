@@ -12,7 +12,7 @@ using TaskTracker.Infrastructure.Data;
 namespace TaskTracker.Infrastructure.Migrations
 {
     [DbContext(typeof(TaskTrackerDbContext))]
-    [Migration("20240922202940_InitialDatabaseSetup")]
+    [Migration("20241122151729_InitialDatabaseSetup")]
     partial class InitialDatabaseSetup
     {
         /// <inheritdoc />
@@ -33,12 +33,15 @@ namespace TaskTracker.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Email")
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");

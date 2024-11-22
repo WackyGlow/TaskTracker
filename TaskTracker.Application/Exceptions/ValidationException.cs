@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TaskTracker.Application.Exceptions
+﻿namespace TaskTracker.Application.Exceptions
 {
-    internal class ValidationException : Exception
+    public class ValidationException : Exception
     {
         public IDictionary<string, string> Errors { get; }
-        public ValidationException(string message, IDictionary<string, string[]> errors = null) : base(message)
+
+        public ValidationException(IDictionary<string, string[]> validationErrors)
         {
-            Errors = errors ?? new Dictionary<string, string[]>();
+            Errors = new Dictionary<string, string>();
+            foreach (var error in validationErrors)
+            {
+                Errors[error.Key] = string.Join(", ", error.Value);
+            }
         }
     }
 }

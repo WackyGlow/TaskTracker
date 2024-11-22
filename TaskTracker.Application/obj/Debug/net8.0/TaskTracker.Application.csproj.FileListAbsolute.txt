@@ -12,3 +12,7 @@ C:\Hobby Coding\TaskTracker\TaskTracker.Application\obj\Debug\net8.0\refint\Task
 C:\Hobby Coding\TaskTracker\TaskTracker.Application\obj\Debug\net8.0\TaskTracker.Application.pdb
 C:\Hobby Coding\TaskTracker\TaskTracker.Application\obj\Debug\net8.0\TaskTracker.Application.genruntimeconfig.cache
 C:\Hobby Coding\TaskTracker\TaskTracker.Application\obj\Debug\net8.0\ref\TaskTracker.Application.dll
+C:\Hobby Coding\TaskTracker\TaskTracker.Application\obj\Debug\net8.0\TaskTracker.Application.sourcelink.json
+C:\Hobby Coding\TaskTracker\TaskTracker.Application\bin\Debug\net8.0\TaskTracker.Domain.dll
+C:\Hobby Coding\TaskTracker\TaskTracker.Application\bin\Debug\net8.0\TaskTracker.Domain.pdb
+C:\Hobby Coding\TaskTracker\TaskTracker.Application\obj\Debug\net8.0\TaskTrac.CBC11A5F.Up2Date

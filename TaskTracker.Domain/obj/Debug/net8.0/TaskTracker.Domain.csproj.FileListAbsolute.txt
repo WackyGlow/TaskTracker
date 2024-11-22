@@ -7,6 +7,7 @@ C:\Hobby Coding\TaskTracker\TaskTracker.Domain\obj\Debug\net8.0\TaskTracker.Doma
 C:\Hobby Coding\TaskTracker\TaskTracker.Domain\obj\Debug\net8.0\TaskTracker.Domain.AssemblyInfoInputs.cache
 C:\Hobby Coding\TaskTracker\TaskTracker.Domain\obj\Debug\net8.0\TaskTracker.Domain.AssemblyInfo.cs
 C:\Hobby Coding\TaskTracker\TaskTracker.Domain\obj\Debug\net8.0\TaskTracker.Domain.csproj.CoreCompileInputs.cache
+C:\Hobby Coding\TaskTracker\TaskTracker.Domain\obj\Debug\net8.0\TaskTracker.Domain.sourcelink.json
 C:\Hobby Coding\TaskTracker\TaskTracker.Domain\obj\Debug\net8.0\TaskTracker.Domain.dll
 C:\Hobby Coding\TaskTracker\TaskTracker.Domain\obj\Debug\net8.0\refint\TaskTracker.Domain.dll
 C:\Hobby Coding\TaskTracker\TaskTracker.Domain\obj\Debug\net8.0\TaskTracker.Domain.pdb

@@ -9,6 +9,7 @@ C:\Hobby Coding\TaskTracker\TaskTracker.Infrastructure\obj\Debug\net8.0\TaskTrac
 C:\Hobby Coding\TaskTracker\TaskTracker.Infrastructure\obj\Debug\net8.0\TaskTracker.Infrastructure.AssemblyInfoInputs.cache
 C:\Hobby Coding\TaskTracker\TaskTracker.Infrastructure\obj\Debug\net8.0\TaskTracker.Infrastructure.AssemblyInfo.cs
 C:\Hobby Coding\TaskTracker\TaskTracker.Infrastructure\obj\Debug\net8.0\TaskTracker.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Hobby Coding\TaskTracker\TaskTracker.Infrastructure\obj\Debug\net8.0\TaskTracker.Infrastructure.sourcelink.json
 C:\Hobby Coding\TaskTracker\TaskTracker.Infrastructure\obj\Debug\net8.0\TaskTrac.CA91C8E6.Up2Date
 C:\Hobby Coding\TaskTracker\TaskTracker.Infrastructure\obj\Debug\net8.0\TaskTracker.Infrastructure.dll
 C:\Hobby Coding\TaskTracker\TaskTracker.Infrastructure\obj\Debug\net8.0\refint\TaskTracker.Infrastructure.dll
