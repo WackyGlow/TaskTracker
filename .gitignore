@@ -401,3 +401,10 @@ FodyWeavers.xsd
 TaskTracker.Infrastructure/bin/Debug/net8.0/TaskTracker.Domain.pdb
 TaskTracker.Infrastructure/bin/Debug/net8.0/TaskTracker.Infrastructure.dll
 TaskTracker.Infrastructure/bin/Debug/net8.0/TaskTracker.Infrastructure.pdb
+.vs/ProjectEvaluation/tasktracker.metadata.v8.bin
+.vs/ProjectEvaluation/tasktracker.projects.v8.bin
+.vs/ProjectEvaluation/tasktracker.strings.v8.bin
+.vs/TaskTracker/DesignTimeBuild/.dtbcache.v2
+.vs/TaskTracker/v17/.futdcache.v2
+.vs/TaskTracker/v17/.suo
+.vs/TaskTracker/v17/DocumentLayout.json
