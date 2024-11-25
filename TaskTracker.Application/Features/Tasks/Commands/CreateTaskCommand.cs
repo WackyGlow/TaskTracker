@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using TaskTracker.Application.DTOs;
 
 namespace TaskTracker.Application.Features.Tasks.Commands
 {
-    public class CreateTaskCommand
+    public class CreateTaskCommand : IRequest<TaskItemDto>
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -17,5 +14,4 @@ namespace TaskTracker.Application.Features.Tasks.Commands
         public int? RecurrenceInterval { get; set; }
         public string RecurrenceUnit { get; set; }
     }
-
 }
