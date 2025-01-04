@@ -13,9 +13,14 @@ namespace TaskTracker.Application.Features.Tasks.Queries.Handler
             _taskService = taskService;
         }
 
-        public Task<IEnumerable<TaskItemDto>> Handle(GetAllTasksQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<TaskItemDto>> Handle(GetAllTasksQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            // Call the service to retrieve all tasks
+            var tasks = await _taskService.GetAllTasksAsync();
+
+            // Return the retrieved tasks
+            return tasks;
         }
+
     }
 }

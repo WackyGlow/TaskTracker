@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskTracker.Application.DTOs;
 
 namespace TaskTracker.Application.Features.Tasks.Commands
 {
@@ -19,6 +20,7 @@ namespace TaskTracker.Application.Features.Tasks.Commands
         public bool IsRecurring { get; set; }
         public int? RecurrenceInterval { get; set; }
         public string RecurrenceUnit { get; set; }
+        public ICollection<PersonDto> AssignedPersons { get; set; } // List of Persons for the assignments
     }
 
 }

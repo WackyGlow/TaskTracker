@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskTracker.Application.Features.People.Commands;
 using TaskTracker.Application.Features.People.Queries;

@@ -9,9 +9,11 @@ namespace TaskTracker.Application.Features.Tasks.Commands
         public string Description { get; set; }
         public DateTime DueDate { get; set; }
         public string Category { get; set; }
-        public int Priority { get; set; }  // 1 = Low, 2 = Medium, 3 = High
+        public int Priority { get; set; }
         public bool IsRecurring { get; set; }
         public int? RecurrenceInterval { get; set; }
         public string RecurrenceUnit { get; set; }
+        public ICollection<PersonDto> AssignedPersons { get; set; } // List of Persons for the assignments
     }
+
 }

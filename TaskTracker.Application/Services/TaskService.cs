@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TaskTracker.Application.DTOs;
+using TaskTracker.Application.Exceptions;
+using TaskTracker.Application.Features.Tasks.Commands;
+using TaskTracker.Domain.Entities;
+using TaskTracker.Domain.Interfaces.Repositories;
+using TaskTracker.Domain.Interfaces.Services;
 
 namespace TaskTracker.Application.Services
 {
-    using TaskTracker.Application.DTOs;
-    using TaskTracker.Application.Exceptions;
-    using TaskTracker.Application.Features.Tasks.Commands;
-    using TaskTracker.Domain.Entities;
-    using TaskTracker.Domain.Interfaces.Repositories;
-    using TaskTracker.Domain.Interfaces.Services;
-
     public class TaskService : ITaskService
     {
         private readonly ITaskRepository _taskRepository;
@@ -25,6 +19,7 @@ namespace TaskTracker.Application.Services
         public async Task<IEnumerable<TaskItemDto>> GetAllTasksAsync()
         {
             var tasks = await _taskRepository.GetAllAsync();
+
             return tasks.Select(task => new TaskItemDto
             {
                 Id = task.Id,
@@ -36,14 +31,23 @@ namespace TaskTracker.Application.Services
                 Priority = task.Priority,
                 IsRecurring = task.IsRecurring,
                 RecurrenceInterval = task.RecurrenceInterval,
-                RecurrenceUnit = task.RecurrenceUnit
+                RecurrenceUnit = task.RecurrenceUnit,
+                AssignedPersons = task.Assignments.Select(a => new PersonDto
+                {
+                    Id = a.PersonId,
+                    FirstName = a.Person.FirstName,
+                    LastName = a.Person.LastName,
+                    Age = a.Person.Age
+                }).ToList()
             });
         }
 
         public async Task<TaskItemDto> GetTaskByIdAsync(int id)
         {
             var task = await _taskRepository.GetByIdAsync(id);
-            if (task == null) throw new NotFoundException($"Task with ID {id} not found.");
+
+            if (task == null)
+                throw new KeyNotFoundException($"Task with ID {id} not found.");
 
             return new TaskItemDto
             {
@@ -56,7 +60,14 @@ namespace TaskTracker.Application.Services
                 Priority = task.Priority,
                 IsRecurring = task.IsRecurring,
                 RecurrenceInterval = task.RecurrenceInterval,
-                RecurrenceUnit = task.RecurrenceUnit
+                RecurrenceUnit = task.RecurrenceUnit,
+                AssignedPersons = task.Assignments.Select(a => new PersonDto
+                {
+                    Id = a.PersonId,
+                    FirstName = a.Person.FirstName,
+                    LastName = a.Person.LastName,
+                    Age = a.Person.Age
+                }).ToList()
             };
         }
 
@@ -72,7 +83,11 @@ namespace TaskTracker.Application.Services
                 Priority = command.Priority,
                 IsRecurring = command.IsRecurring,
                 RecurrenceInterval = command.RecurrenceInterval,
-                RecurrenceUnit = command.RecurrenceUnit
+                RecurrenceUnit = command.RecurrenceUnit,
+                Assignments = command.AssignedPersons.Select(p => new TaskAssignment
+                {
+                    PersonId = p.Id
+                }).ToList()
             };
 
             await _taskRepository.AddAsync(task);
@@ -88,14 +103,23 @@ namespace TaskTracker.Application.Services
                 Priority = task.Priority,
                 IsRecurring = task.IsRecurring,
                 RecurrenceInterval = task.RecurrenceInterval,
-                RecurrenceUnit = task.RecurrenceUnit
+                RecurrenceUnit = task.RecurrenceUnit,
+                AssignedPersons = task.Assignments.Select(a => new PersonDto
+                {
+                    Id = a.PersonId,
+                    FirstName = a.Person.FirstName,
+                    LastName = a.Person.LastName,
+                    Age = a.Person.Age
+                }).ToList()
             };
         }
 
         public async Task UpdateTaskAsync(UpdateTaskCommand command)
         {
             var task = await _taskRepository.GetByIdAsync(command.Id);
-            if (task == null) throw new NotFoundException($"Task with ID {command.Id} not found.");
+
+            if (task == null)
+                throw new KeyNotFoundException($"Task with ID {command.Id} not found.");
 
             task.Name = command.Name;
             task.Description = command.Description;
@@ -107,16 +131,25 @@ namespace TaskTracker.Application.Services
             task.RecurrenceInterval = command.RecurrenceInterval;
             task.RecurrenceUnit = command.RecurrenceUnit;
 
+            // Clear and update assignments
+            task.Assignments.Clear();
+            task.Assignments = command.AssignedPersons.Select(p => new TaskAssignment
+            {
+                PersonId = p.Id,
+                TaskItemId = task.Id
+            }).ToList();
+
             await _taskRepository.UpdateAsync(task);
         }
 
         public async Task DeleteTaskAsync(int id)
         {
             var task = await _taskRepository.GetByIdAsync(id);
-            if (task == null) throw new NotFoundException($"Task with ID {id} not found.");
+
+            if (task == null)
+                throw new KeyNotFoundException($"Task with ID {id} not found.");
 
             await _taskRepository.DeleteAsync(id);
         }
     }
-
 }
