@@ -151,5 +151,60 @@ namespace TaskTracker.Application.Services
 
             await _taskRepository.DeleteAsync(id);
         }
+
+        public async Task MarkTaskAsCompletedAsync(int taskId)
+        {
+            var taskItem = await _taskRepository.GetByIdAsync(taskId);
+
+            if (taskItem == null)
+                throw new NotFoundException($"Task with ID {taskId} not found.");
+
+            // Mark as completed
+            taskItem.IsCompleted = true;
+
+            // Handle recurring logic
+            if (taskItem.IsRecurring && taskItem.RecurrenceInterval.HasValue)
+            {
+                // Calculate next due date
+                DateTime nextDueDate = taskItem.DueDate;
+
+                switch (taskItem.RecurrenceUnit?.ToLower())
+                {
+                    case "days":
+                        nextDueDate = taskItem.DueDate.AddDays(taskItem.RecurrenceInterval.Value);
+                        break;
+                    case "weeks":
+                        nextDueDate = taskItem.DueDate.AddDays(taskItem.RecurrenceInterval.Value * 7);
+                        break;
+                    case "months":
+                        nextDueDate = taskItem.DueDate.AddMonths(taskItem.RecurrenceInterval.Value);
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid Recurrence Unit.");
+                }
+
+                // Create the new recurring task
+                var newTask = new TaskItem
+                {
+                    Name = taskItem.Name,
+                    Description = taskItem.Description,
+                    DueDate = nextDueDate,
+                    IsCompleted = false,
+                    Category = taskItem.Category,
+                    Priority = taskItem.Priority,
+                    IsRecurring = taskItem.IsRecurring,
+                    RecurrenceInterval = taskItem.RecurrenceInterval,
+                    RecurrenceUnit = taskItem.RecurrenceUnit,
+                    Assignments = taskItem.Assignments.Select(a => new TaskAssignment
+                    {
+                        PersonId = a.PersonId
+                    }).ToList()
+                };
+
+                await _taskRepository.AddAsync(newTask);
+            }
+
+            await _taskRepository.UpdateAsync(taskItem);
+        }
     }
 }

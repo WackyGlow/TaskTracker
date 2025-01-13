@@ -16,10 +16,16 @@ namespace TaskTracker.Infrastructure.Repositories
 
         public async Task<TaskItem> GetByIdAsync(int id)
         {
-            return await _dbContext.TaskItems
+            var result = await _dbContext.TaskItems
                 .Include(t => t.Assignments)
                     .ThenInclude(a => a.Person) // Ensure Person is included for assignments
                 .FirstOrDefaultAsync(t => t.Id == id);
+            if (result == null) 
+            {
+                //TODO - should it return empty TaskItem?
+                return new TaskItem(); 
+            }
+            return result;
         }
 
         public async Task<IEnumerable<TaskItem>> GetAllAsync()

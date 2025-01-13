@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TaskTracker.Application.Features.People.Commands.Handlers;
+using TaskTracker.Application.Features.Tasks.Commands.Handlers;
 using TaskTracker.Application.Services;
 using TaskTracker.Domain.Interfaces.Repositories;
 using TaskTracker.Domain.Interfaces.Services;
@@ -20,6 +21,7 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 
 // Add services to the container.
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreatePersonCommandHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CompleteTaskCommandHandler).Assembly));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

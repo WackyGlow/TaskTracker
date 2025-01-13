@@ -15,5 +15,6 @@ namespace TaskTracker.Domain.Interfaces.Services
         Task<TaskItemDto> CreateTaskAsync(CreateTaskCommand command);
         Task UpdateTaskAsync(UpdateTaskCommand command);
         Task DeleteTaskAsync(int id);
+        Task MarkTaskAsCompletedAsync(int taskId);
     }
 }
