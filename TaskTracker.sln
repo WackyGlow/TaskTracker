@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker.WebAPI", "TaskTracker.WebAPI\TaskTracker.WebAPI.csproj", "{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskTracker.WebAPI", "TaskTracker.WebAPI\TaskTracker.WebAPI.csproj", "{C408E5DA-23B9-4180-B7E6-B6D1EFCE4D0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker.Domain", "TaskTracker.Domain\TaskTracker.Domain.csproj", "{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskTracker.Domain", "TaskTracker.Domain\TaskTracker.Domain.csproj", "{2AA2DB5C-BA22-40B3-849A-3E9DCBE402D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker.Application", "TaskTracker.Application\TaskTracker.Application.csproj", "{B2987A43-8791-4436-B399-1AF14CD4A439}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskTracker.Application", "TaskTracker.Application\TaskTracker.Application.csproj", "{B2987A43-8791-4436-B399-1AF14CD4A439}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker.Infrastructure", "TaskTracker.Infrastructure\TaskTracker.Infrastructure.csproj", "{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskTracker.Infrastructure", "TaskTracker.Infrastructure\TaskTracker.Infrastructure.csproj", "{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker.Test", "TaskTracker.Test\TaskTracker.Test.csproj", "{A1342AC6-526D-40F5-AB11-C86BA38C34EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3861D23-6FB3-4BF8-A1A3-06AE942954E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1342AC6-526D-40F5-AB11-C86BA38C34EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1342AC6-526D-40F5-AB11-C86BA38C34EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1342AC6-526D-40F5-AB11-C86BA38C34EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1342AC6-526D-40F5-AB11-C86BA38C34EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

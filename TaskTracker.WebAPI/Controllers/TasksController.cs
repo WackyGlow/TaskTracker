@@ -30,8 +30,9 @@ namespace TaskTracker.WebAPI.Controllers
         {
             var result = await _mediator.Send(new GetTaskByIdQuery(id));
             if (result == null)
+            {
                 return NotFound();
-
+            }
             return Ok(result);
         }
 
