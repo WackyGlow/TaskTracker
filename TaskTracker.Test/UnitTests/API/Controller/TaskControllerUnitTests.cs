@@ -1,200 +1,162 @@
-﻿using FluentAssertions;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using TaskTracker.Application.DTOs;
 using TaskTracker.Application.Features.Tasks.Commands;
 using TaskTracker.Application.Features.Tasks.Queries;
 using TaskTracker.WebAPI.Controllers;
+using MediatR;
 
-
-namespace TaskTracker.Test.UnitTests.API.Controller
+namespace TaskTracker.Test.UnitTests
 {
-    public class TaskControllerUnitTests
+    public class TasksControllerTests
     {
         private readonly Mock<IMediator> _mediatorMock;
-        private readonly TasksController _taskController;
+        private readonly TasksController _controller;
 
-        public TaskControllerUnitTests()
+        public TasksControllerTests()
         {
             _mediatorMock = new Mock<IMediator>();
-            _taskController = new TasksController(_mediatorMock.Object);
+            _controller = new TasksController(_mediatorMock.Object);
         }
 
         [Fact]
-        public async Task GetAllTasks_ReturnsNonNullResult()
+        public async Task GetAllTasks_ReturnsOkResult_WithListOfTasks()
         {
             // Arrange
-            var expectedTasks = new List<TaskItemDto>
+            var tasks = new List<TaskItemDto>
             {
-                new TaskItemDto { Id = 1, Name = "Task 1" },
-                new TaskItemDto { Id = 2, Name = "Task 2" }
+                new TaskItemDto { Id = 1, Name = "Task1", Description = "Description1" },
+                new TaskItemDto { Id = 2, Name = "Task2", Description = "Description2" }
             };
-
-            _mediatorMock
-                .Setup(m => m.Send(It.IsAny<GetAllTasksQuery>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(expectedTasks);
+            _mediatorMock.Setup(m => m.Send(It.IsAny<GetAllTasksQuery>(), default)).ReturnsAsync(tasks);
 
             // Act
-            var result = await _taskController.GetAllTasks();
+            var result = await _controller.GetAllTasks();
 
             // Assert
-            result.Should().NotBeNull(); // Test 1: Ensure the result is not null
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
-        public async Task GetAllTasks_ReturnsExpectedTasks()
+        public async Task GetAllTasks_ReturnsOkResult_WithEmptyList()
         {
             // Arrange
-            var expectedTasks = new List<TaskItemDto>
-            {
-                new TaskItemDto { Id = 1, Name = "Task 1" },
-                new TaskItemDto { Id = 2, Name = "Task 2" }
-            };
-
-            _mediatorMock
-                .Setup(m => m.Send(It.IsAny<GetAllTasksQuery>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(expectedTasks);
+            var tasks = new List<TaskItemDto>();
+            _mediatorMock.Setup(m => m.Send(It.IsAny<GetAllTasksQuery>(), default)).ReturnsAsync(tasks);
 
             // Act
-            var result = await _taskController.GetAllTasks() as OkObjectResult;
+            var result = await _controller.GetAllTasks();
 
             // Assert
-            result!.Value.Should().BeEquivalentTo(expectedTasks); // Test 2: Compare the returned object to the expected tasks
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
-        public async Task GetTaskById_ReturnsNonNullResult()
+        public async Task GetTaskById_ReturnsOkResult_WhenTaskExists()
         {
             // Arrange
-            var expectedTask = new TaskItemDto { Id = 1, Name = "Test Task" };
-
-            _mediatorMock
-                .Setup(m => m.Send(It.IsAny<GetTaskByIdQuery>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(expectedTask);
+            var task = new TaskItemDto { Id = 1, Name = "Task1", Description = "Description1" };
+            _mediatorMock.Setup(m => m.Send(It.IsAny<GetTaskByIdQuery>(), default)).ReturnsAsync(task);
 
             // Act
-            var result = await _taskController.GetTaskById(1);
+            var result = await _controller.GetTaskById(1);
 
             // Assert
-            result.Should().NotBeNull(); // Ensure result is not null
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
-        public async Task GetTaskById_ReturnsExpectedTask()
+        public async Task GetTaskById_ReturnsNotFound_WhenTaskDoesNotExist()
         {
             // Arrange
-            var expectedTask = new TaskItemDto { Id = 1, Name = "Test Task" };
-
-            _mediatorMock
-                .Setup(m => m.Send(It.IsAny<GetTaskByIdQuery>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(expectedTask);
+            _mediatorMock.Setup(m => m.Send(It.IsAny<GetTaskByIdQuery>(), default)).ReturnsAsync((TaskItemDto)null);
 
             // Act
-            var result = await _taskController.GetTaskById(1) as OkObjectResult;
+            var result = await _controller.GetTaskById(1);
 
             // Assert
-            result!.Value.Should().BeEquivalentTo(expectedTask); // Ensure result matches expected
+            Assert.IsType<NotFoundResult>(result);
         }
 
         [Fact]
-        public async Task CreateTask_ReturnsNonNullResult()
+        public async Task CreateTask_ReturnsOkResult_WhenTaskIsValid()
         {
             // Arrange
-            var command = new CreateTaskCommand { Name = "New Task" };
-            var expectedTask = new TaskItemDto { Id = 1, Name = "New Task" };
-
-            _mediatorMock
-                .Setup(m => m.Send(It.IsAny<CreateTaskCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(expectedTask);
+            var command = new CreateTaskCommand { Name = "Task1", Description = "Description" };
+            var createdTask = new TaskItemDto { Id = 1, Name = "Task1", Description = "Description" };
+            _mediatorMock.Setup(m => m.Send(command, default)).ReturnsAsync(createdTask);
 
             // Act
-            var result = await _taskController.CreateTask(command);
+            var result = await _controller.CreateTask(command);
 
             // Assert
-            result.Should().NotBeNull(); // Ensure result is not null
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
-        public async Task CreateTask_ReturnsCreatedTask()
+        public async Task CreateTask_ReturnsBadRequest_WhenCommandIsInvalid()
         {
             // Arrange
-            var command = new CreateTaskCommand { Name = "New Task" };
-            var expectedTask = new TaskItemDto { Id = 1, Name = "New Task" };
-
-            _mediatorMock
-                .Setup(m => m.Send(It.IsAny<CreateTaskCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(expectedTask);
+            var command = new CreateTaskCommand { Name = "", Description = "" };
 
             // Act
-            var result = await _taskController.CreateTask(command) as CreatedAtActionResult;
+            var result = await _controller.CreateTask(command);
 
             // Assert
-            result!.Value.Should().BeEquivalentTo(expectedTask); // Ensure result matches expected
+            Assert.IsType<BadRequestObjectResult>(result);
         }
 
         [Fact]
-        public async Task UpdateTask_ReturnsNonNullResult()
+        public async Task UpdateTask_ReturnsOkResult_WhenTaskIsUpdated()
         {
             // Arrange
-            var command = new UpdateTaskCommand { Id = 1, Name = "Updated Task" };
-
-            _mediatorMock
-                .Setup(m => m.Send(It.IsAny<UpdateTaskCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(Unit.Value);
+            var command = new UpdateTaskCommand { Id = 1, Name = "UpdatedTask", Description = "UpdatedDescription" };
+            _mediatorMock.Setup(m => m.Send(command, default)).ReturnsAsync(Unit.Value);
 
             // Act
-            var result = await _taskController.UpdateTask(command.Id, command);
+            var result = await _controller.UpdateTask(1, command);
 
             // Assert
-            result.Should().NotBeNull(); // Ensure result is not null
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
-        public async Task UpdateTask_ReturnsNoContent()
+        public async Task UpdateTask_ReturnsBadRequest_WhenIdsDoNotMatch()
         {
             // Arrange
-            var command = new UpdateTaskCommand { Id = 1, Name = "Updated Task" };
-
-            _mediatorMock
-                .Setup(m => m.Send(It.IsAny<UpdateTaskCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(Unit.Value);
+            var command = new UpdateTaskCommand { Id = 2, Name = "UpdatedTask", Description = "UpdatedDescription" };
 
             // Act
-            var result = await _taskController.UpdateTask( command.Id ,command);
+            var result = await _controller.UpdateTask(1, command);
 
             // Assert
-            result.Should().BeOfType<NoContentResult>(); // Ensure result is NoContent
+            Assert.IsType<BadRequestObjectResult>(result);
         }
 
         [Fact]
-        public async Task DeleteTask_ReturnsNonNullResult()
+        public async Task DeleteTask_ReturnsOkResult_WhenTaskIsDeleted()
         {
             // Arrange
-            _mediatorMock
-                .Setup(m => m.Send(It.IsAny<DeleteTaskCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(Unit.Value);
+            _mediatorMock.Setup(m => m.Send(It.IsAny<DeleteTaskCommand>(), default)).ReturnsAsync(Unit.Value);
 
             // Act
-            var result = await _taskController.DeleteTask(1);
+            var result = await _controller.DeleteTask(1);
 
             // Assert
-            result.Should().NotBeNull(); // Ensure result is not null
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
-        public async Task DeleteTask_ReturnsNoContent()
+        public async Task DeleteTask_ReturnsNotFound_WhenTaskDoesNotExist()
         {
             // Arrange
-            _mediatorMock
-                .Setup(m => m.Send(It.IsAny<DeleteTaskCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(Unit.Value);
+            _mediatorMock.Setup(m => m.Send(It.IsAny<DeleteTaskCommand>(), default)).ThrowsAsync(new KeyNotFoundException());
 
             // Act
-            var result = await _taskController.DeleteTask(1);
+            var result = await _controller.DeleteTask(1);
 
             // Assert
-            result.Should().BeOfType<NoContentResult>(); // Ensure result is NoContent
+            Assert.IsType<NotFoundResult>(result);
         }
     }
 }

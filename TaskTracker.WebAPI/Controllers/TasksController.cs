@@ -38,11 +38,26 @@ namespace TaskTracker.WebAPI.Controllers
 
         // Create a New Task
         [HttpPost]
-        public async Task<IActionResult> CreateTask([FromBody] CreateTaskCommand command)
+        public async Task<IActionResult> CreateTask(CreateTaskCommand command)
         {
-            var result = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetTaskById), new { id = result.Id }, result);
+            try
+            {
+                if (command == null || string.IsNullOrWhiteSpace(command.Name) || string.IsNullOrWhiteSpace(command.Description))
+                {
+                    return BadRequest("Invalid task details provided.");
+                }
+
+                var result = await _mediator.Send(command);
+
+                // Return a generic success message or status
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while creating the task.");
+            }
         }
+
 
         // Update an Existing Task
         [HttpPut("{id:int}")]
@@ -51,16 +66,23 @@ namespace TaskTracker.WebAPI.Controllers
             if (id != command.Id)
                 return BadRequest("Task ID mismatch.");
 
-            await _mediator.Send(command);
-            return NoContent();
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         // Delete a Task
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteTask(int id)
         {
-            await _mediator.Send(new DeleteTaskCommand { Id = id });
-            return NoContent();
+            try
+            {
+                var result = await _mediator.Send(new DeleteTaskCommand { Id = id });
+                return Ok(result);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }
