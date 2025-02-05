@@ -86,7 +86,14 @@ namespace TaskTracker.Application.Services
                 RecurrenceUnit = command.RecurrenceUnit,
                 Assignments = command.AssignedPersons.Select(p => new TaskAssignment
                 {
-                    PersonId = p.Id
+                    PersonId = p.Id,
+                    Person = new Person // Initialize the Person property
+                    {
+                        Id = p.Id,
+                        FirstName = p.FirstName,
+                        LastName = p.LastName,
+                        Age = p.Age
+                    }
                 }).ToList()
             };
 
