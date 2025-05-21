@@ -5,7 +5,7 @@ namespace TaskTracker.Domain.Entities
 {
     public class TaskItem
     {
-        public Guid UUId { get; private set; }
+        public Guid Id { get; private set; }
 
         public string Name { get; private set; }
         public string Description { get; private set; }
