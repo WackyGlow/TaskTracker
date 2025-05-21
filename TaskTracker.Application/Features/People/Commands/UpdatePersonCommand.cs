@@ -1,12 +1,21 @@
 ﻿using MediatR;
+using TaskTracker.Application.Features.People.Dtos;
 
 namespace TaskTracker.Application.Features.People.Commands
 {
-    public class UpdatePersonCommand : IRequest<Unit>
+    public class UpdatePersonCommand : IRequest<PersonDto>
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
-        public int Age { get; set; }
+        public Guid Id { get; }
+        public string FirstName { get; }
+        public string LastName { get; }
+        public DateOnly DateOfBirth { get; }
+
+        public UpdatePersonCommand(Guid id, string firstName, string lastName, DateOnly dateOfBirth)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            DateOfBirth = dateOfBirth;
+        }
     }
 }

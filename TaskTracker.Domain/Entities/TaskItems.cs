@@ -1,25 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TaskTracker.Domain.Enums;
+using TaskTracker.Domain.ValueObjects;
 
 namespace TaskTracker.Domain.Entities
 {
     public class TaskItem
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime DueDate { get; set; }
-        public bool IsCompleted { get; set; }
-        public string Category { get; set; }
-        public int Priority { get; set; } // Assuming 1 = Low, 2 = Medium, 3 = High
-        public bool IsRecurring { get; set; } // To indicate if the task is recurring
-        public int? RecurrenceInterval { get; set; } // Interval in days, weeks, etc.
-        public string RecurrenceUnit { get; set; } // "Days", "Weeks", "Months", etc.
+        public Guid UUId { get; private set; }
 
-        // Relationships
-        public ICollection<TaskAssignment> Assignments { get; set; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public DateTime DueDate { get; private set; }
+        public bool IsCompleted { get; private set; }
+
+        public Category Category { get; private set; }
+        public Priority Priority { get; private set; }
+        public Recurrence? Recurrence { get; private set; }
+
+        public ICollection<Person> AssignedPeople { get; private set; } = new List<Person>();
+
+        private TaskItem() { }
+
+        public TaskItem(string name, string description, DateTime dueDate, Category category, Priority priority, Recurrence? recurrence = null)
+        {
+            Name = name;
+            Description = description;
+            DueDate = dueDate;
+            Category = category;
+            Priority = priority;
+            Recurrence = recurrence;
+            IsCompleted = false;
+        }
+
+        public void MarkCompleted() => IsCompleted = true;
+        public void Reschedule(DateTime newDueDate) => DueDate = newDueDate;
+        public void UpdateRecurrence(Recurrence? recurrence) => Recurrence = recurrence;
     }
 }

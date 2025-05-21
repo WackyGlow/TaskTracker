@@ -1,21 +1,44 @@
 ﻿using MediatR;
-using TaskTracker.Domain.Interfaces.Services;
+using TaskTracker.Application.Features.People.Dtos;
+using TaskTracker.Domain.Interfaces.Repositories;
+using TaskTracker.Domain.ValueObjects;
 
 namespace TaskTracker.Application.Features.People.Commands.Handlers
 {
-    public class UpdatePersonCommandHandler : IRequestHandler<UpdatePersonCommand, Unit>
+    public class UpdatePersonCommandHandler : IRequestHandler<UpdatePersonCommand, PersonDto>
     {
-        private readonly IPersonService _personService;
+        private readonly IPersonRepository _repository;
 
-        public UpdatePersonCommandHandler(IPersonService personService)
+        public UpdatePersonCommandHandler(IPersonRepository repository)
         {
-            _personService = personService;
+            _repository = repository;
         }
 
-        public async Task<Unit> Handle(UpdatePersonCommand request, CancellationToken cancellationToken)
+        public async Task<PersonDto> Handle(UpdatePersonCommand request, CancellationToken cancellationToken)
         {
-            await _personService.UpdatePersonAsync(request);
-            return Unit.Value;
+            try
+            {
+                var person = await _repository.GetByIdAsync(request.Id);
+                if (person == null)
+                    throw new KeyNotFoundException($"Person with ID {request.Id} not found.");
+
+                var dob = new DateOfBirth(request.DateOfBirth);
+                person.Update(request.FirstName, request.LastName, dob);
+
+                await _repository.UpdateAsync(person);
+
+                return new PersonDto
+                {
+                    Id = person.Id,
+                    FirstName = person.FirstName,
+                    LastName = person.LastName,
+                    Age = person.DateOfBirth.Age
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to update Person with ID {request.Id}.", ex);
+            }
         }
     }
 }

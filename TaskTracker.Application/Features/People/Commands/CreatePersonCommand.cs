@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using TaskTracker.Application.DTOs;
+using TaskTracker.Application.Features.People.Dtos;
 
 namespace TaskTracker.Application.Features.People.Commands
 {
@@ -7,6 +7,13 @@ namespace TaskTracker.Application.Features.People.Commands
     {
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
-        public int Age { get; set; }
+        public DateOnly DateOfBirth { get; set; }
+
+        public CreatePersonCommand(string firstName, string lastName, DateOnly dateOfBirth)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            DateOfBirth = dateOfBirth;
+        }
     }
 }

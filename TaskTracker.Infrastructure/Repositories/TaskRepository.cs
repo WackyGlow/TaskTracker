@@ -14,67 +14,96 @@ namespace TaskTracker.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<TaskItem> GetByIdAsync(int id)
+        public async Task<TaskItem?> GetByIdAsync(int id)
         {
-            var result = await _dbContext.TaskItems
-                .Include(t => t.Assignments)
-                    .ThenInclude(a => a.Person) // Ensure Person is included for assignments
-                .FirstOrDefaultAsync(t => t.Id == id);
-            if (result == null) 
+            try
             {
-                //TODO - should it return empty TaskItem?
-                return new TaskItem(); 
+                return await _dbContext.TaskItems
+                    .Include(t => t.AssignedPeople)
+                    .FirstOrDefaultAsync(t => t.Id == id);
             }
-            return result;
+            catch (Exception ex)
+            {
+                // Log or rethrow depending on your design
+                throw new Exception($"Failed to retrieve TaskItem with ID {id}.", ex);
+            }
         }
 
         public async Task<IEnumerable<TaskItem>> GetAllAsync()
         {
-            return await _dbContext.TaskItems
-                .Include(t => t.Assignments)
-                    .ThenInclude(a => a.Person) // Include related Person
-                .ToListAsync();
+            try
+            {
+                return await _dbContext.TaskItems
+                    .Include(t => t.AssignedPeople)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to retrieve all TaskItems.", ex);
+            }
         }
 
         public async Task AddAsync(TaskItem taskItem)
         {
-            if (taskItem == null)
-                throw new ArgumentNullException(nameof(taskItem));
+            try
+            {
+                if (taskItem == null)
+                    throw new ArgumentNullException(nameof(taskItem));
 
-            await _dbContext.TaskItems.AddAsync(taskItem);
-            await _dbContext.SaveChangesAsync();
+                await _dbContext.TaskItems.AddAsync(taskItem);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to add TaskItem.", ex);
+            }
         }
 
         public async Task UpdateAsync(TaskItem taskItem)
         {
-            if (taskItem == null)
-                throw new ArgumentNullException(nameof(taskItem));
-
-            // Ensure the entity is tracked by the context
-            var existingTask = await GetByIdAsync(taskItem.Id);
-            if (existingTask == null)
-                throw new KeyNotFoundException($"Task with ID {taskItem.Id} not found.");
-
-            _dbContext.Entry(existingTask).CurrentValues.SetValues(taskItem);
-
-            // Handle Assignments updates (if required)
-            existingTask.Assignments.Clear();
-            foreach (var assignment in taskItem.Assignments)
+            try
             {
-                existingTask.Assignments.Add(assignment);
-            }
+                if (taskItem == null)
+                    throw new ArgumentNullException(nameof(taskItem));
 
-            await _dbContext.SaveChangesAsync();
+                var existing = await _dbContext.TaskItems
+                    .Include(t => t.AssignedPeople)
+                    .FirstOrDefaultAsync(t => t.Id == taskItem.Id);
+
+                if (existing == null)
+                    throw new KeyNotFoundException($"Task with ID {taskItem.Id} not found.");
+
+                _dbContext.Entry(existing).CurrentValues.SetValues(taskItem);
+
+                existing.AssignedPeople.Clear();
+                foreach (var person in taskItem.AssignedPeople)
+                {
+                    existing.AssignedPeople.Add(person);
+                }
+
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to update TaskItem with ID {taskItem?.Id}.", ex);
+            }
         }
 
         public async Task DeleteAsync(int id)
         {
-            var taskItem = await GetByIdAsync(id);
-            if (taskItem == null)
-                throw new KeyNotFoundException($"Task with ID {id} not found.");
+            try
+            {
+                var taskItem = await _dbContext.TaskItems.FindAsync(id);
+                if (taskItem == null)
+                    throw new KeyNotFoundException($"Task with ID {id} not found.");
 
-            _dbContext.TaskItems.Remove(taskItem);
-            await _dbContext.SaveChangesAsync();
+                _dbContext.TaskItems.Remove(taskItem);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to delete TaskItem with ID {id}.", ex);
+            }
         }
     }
 }

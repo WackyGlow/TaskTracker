@@ -1,10 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Infrastructure.Data.Configurations
@@ -25,13 +20,12 @@ namespace TaskTracker.Infrastructure.Data.Configurations
                    .IsRequired()
                    .HasMaxLength(100);
 
-            builder.Property(p => p.Age)
-                   .IsRequired();
+            builder.OwnsOne(p => p.DateOfBirth, dob =>
+            {
+                dob.Property(d => d.Value).HasColumnName("DateOfBirth")
+                .IsRequired();
+            });
 
-            // Define relationships
-            builder.HasMany(p => p.Assignments)
-                .WithOne(ta => ta.Person)
-                .HasForeignKey(ta => ta.PersonId);
         }
     }
 }

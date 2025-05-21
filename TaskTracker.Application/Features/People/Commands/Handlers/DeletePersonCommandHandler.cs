@@ -1,21 +1,40 @@
 ﻿using MediatR;
-using TaskTracker.Domain.Interfaces.Services;
+using TaskTracker.Application.Features.People.Dtos;
+using TaskTracker.Domain.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Features.People.Commands.Handlers
 {
-    public class DeletePersonCommandHandler : IRequestHandler<DeletePersonCommand, Unit>
+    public class DeletePersonCommandHandler : IRequestHandler<DeletePersonCommand, PersonDto>
     {
-        private readonly IPersonService _personService;
+        private readonly IPersonRepository _repository;
 
-        public DeletePersonCommandHandler(IPersonService personService)
+        public DeletePersonCommandHandler(IPersonRepository repository)
         {
-            _personService = personService;
+            _repository = repository;
         }
 
-        public async Task<Unit> Handle(DeletePersonCommand request, CancellationToken cancellationToken)
+        public async Task<PersonDto> Handle(DeletePersonCommand request, CancellationToken cancellationToken)
         {
-            await _personService.DeletePersonAsync(request.Id);
-            return Unit.Value;
+            try
+            {
+                var person = await _repository.GetByIdAsync(request.PersonId);
+                if (person == null)
+                    throw new KeyNotFoundException($"Person with ID {request.PersonId} not found.");
+
+                await _repository.DeleteAsync(person);
+
+                return new PersonDto
+                {
+                    Id = person.Id,
+                    FirstName = person.FirstName,
+                    LastName = person.LastName,
+                    Age = person.DateOfBirth.Age
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to delete Person with ID {request.PersonId}.", ex);
+            }
         }
     }
 }

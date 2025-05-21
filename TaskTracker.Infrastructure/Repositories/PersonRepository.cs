@@ -14,17 +14,19 @@ namespace TaskTracker.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<Person> GetByIdAsync(int id)
+        public async Task<Person?> GetByIdAsync(Guid id)
         {
             return await _dbContext.People
-                .Include(p => p.Assignments) // Include related assignments if needed
+                .Include(p => p.AssignedTasks)
+                .Include(p => p.AssignedProjects)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<IEnumerable<Person>> GetAllAsync()
         {
             return await _dbContext.People
-                .Include(p => p.Assignments)
+                .Include(p => p.AssignedTasks)
+                .Include(p => p.AssignedProjects)
                 .ToListAsync();
         }
 
@@ -40,13 +42,19 @@ namespace TaskTracker.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Person person)
         {
-            var person = await GetByIdAsync(id);
-            if (person != null)
+            try
             {
+                if (person == null)
+                    throw new ArgumentNullException(nameof(person));
+
                 _dbContext.People.Remove(person);
                 await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to delete Person with ID {person?.Id}.", ex);
             }
         }
     }
