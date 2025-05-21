@@ -3,7 +3,7 @@ using TaskTracker.Application.Features.People.Dtos;
 
 namespace TaskTracker.Application.Features.People.Queries
 {
-    public class GetAllPeopleQuery : IRequest<IEnumerable<PersonDto>>
+    public class GetPersonsQuery : IRequest<IEnumerable<PersonDto>>
     {
     }
 }

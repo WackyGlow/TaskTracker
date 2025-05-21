@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskTracker.Application.Features.People.Commands;
 using TaskTracker.Application.Features.People.Queries;
+using TaskTracker.Application.Features.People.Dtos;
 
 namespace TaskTracker.WebAPI.Controllers
 {
@@ -19,14 +20,12 @@ namespace TaskTracker.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatePersonCommand command)
         {
-            if (command == null || string.IsNullOrWhiteSpace(command.FirstName) || string.IsNullOrWhiteSpace(command.LastName) || command.Age <= 0)
-            {
-                return BadRequest("Invalid person details provided.");
-            }
+            if (command == null)
+                return BadRequest("Request body is required.");
 
             try
             {
-                var result = await _mediator.Send(command);
+                PersonDto result = await _mediator.Send(command);
                 return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
             }
             catch (Exception ex)
@@ -35,17 +34,15 @@ namespace TaskTracker.WebAPI.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] UpdatePersonCommand command)
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdatePersonCommand command)
         {
             if (id != command.Id)
-            {
                 return BadRequest("Person ID mismatch.");
-            }
 
             try
             {
-                var result = await _mediator.Send(command);
+                PersonDto result = await _mediator.Send(command);
                 return Ok(result);
             }
             catch (KeyNotFoundException)
@@ -58,13 +55,13 @@ namespace TaskTracker.WebAPI.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id)
         {
             try
             {
-                await _mediator.Send(new DeletePersonCommand { Id = id });
-                return Ok($"Person with ID {id} successfully deleted.");
+                PersonDto result = await _mediator.Send(new DeletePersonCommand(id));
+                return Ok(result);
             }
             catch (KeyNotFoundException)
             {
@@ -81,7 +78,7 @@ namespace TaskTracker.WebAPI.Controllers
         {
             try
             {
-                var result = await _mediator.Send(new GetAllPeopleQuery());
+                var result = await _mediator.Send(new GetPersonsQuery());
                 return Ok(result);
             }
             catch (Exception ex)
@@ -90,16 +87,14 @@ namespace TaskTracker.WebAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetById(Guid id)
         {
             try
             {
-                var result = await _mediator.Send(new GetPersonByIdQuery { Id = id });
+                var result = await _mediator.Send(new GetPersonByIdQuery(id));
                 if (result == null)
-                {
                     return NotFound($"Person with ID {id} not found.");
-                }
 
                 return Ok(result);
             }

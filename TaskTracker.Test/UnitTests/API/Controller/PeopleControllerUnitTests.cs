@@ -115,7 +115,7 @@ namespace TaskTracker.Test.UnitTests.API.Controller
                 new PersonDto { Id = Guid.NewGuid(), FirstName = "John", LastName = "Doe", Age = 30 },
                 new PersonDto { Id = Guid.NewGuid(), FirstName = "Jane", LastName = "Doe", Age = 25 }
             };
-            _mediatorMock.Setup(m => m.Send(It.IsAny<GetAllPeopleQuery>(), default)).ReturnsAsync(people);
+            _mediatorMock.Setup(m => m.Send(It.IsAny<GetPersonsQuery>(), default)).ReturnsAsync(people);
 
             // Act
             var result = await _controller.GetAll();

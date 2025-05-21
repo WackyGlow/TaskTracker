@@ -5,6 +5,6 @@ namespace TaskTracker.Application.Features.People.Queries
 {
     public class GetPersonByIdQuery : IRequest<PersonDto>
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

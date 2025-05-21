@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using TaskTracker.Domain.Interfaces.Services;
 
 namespace TaskTracker.Application.Features.Tasks.Commands.Handlers
 {
