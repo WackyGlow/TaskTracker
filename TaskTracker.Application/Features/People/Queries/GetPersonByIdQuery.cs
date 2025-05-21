@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using TaskTracker.Application.DTOs;
+using TaskTracker.Application.Features.People.Dtos;
 
 namespace TaskTracker.Application.Features.People.Queries
 {

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
-using TaskTracker.Application.DTOs;
 using TaskTracker.Application.Features.Tasks.Commands;
 using TaskTracker.Application.Features.Tasks.Queries;
 using TaskTracker.WebAPI.Controllers;
