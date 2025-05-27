@@ -10,6 +10,9 @@
     <Folder Include="Features\Categories\" />
     <Folder Include="Features\Notifications\" />
     <Folder Include="Features\People\Validators\" />
+    <Folder Include="Features\Projects\Commands\" />
+    <Folder Include="Features\Projects\Dtos\" />
+    <Folder Include="Features\Projects\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

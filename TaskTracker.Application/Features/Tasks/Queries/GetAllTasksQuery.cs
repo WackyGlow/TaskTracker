@@ -1,10 +1,5 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskTracker.Application.DTOs;
+using TaskTracker.Application.Features.Tasks.Dtos;
 
 namespace TaskTracker.Application.Features.Tasks.Queries
 {
