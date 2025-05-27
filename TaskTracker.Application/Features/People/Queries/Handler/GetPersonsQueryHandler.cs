@@ -1,20 +1,36 @@
 ﻿using MediatR;
 using TaskTracker.Application.Features.People.Dtos;
+using TaskTracker.Domain.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Features.People.Queries.Handlers
 {
-    public class GetPersonsQueryHandler : IRequestHandler<GetPersonsQuery, IEnumerable<PersonDto>>
+    public class GetAllPeopleQueryHandler : IRequestHandler<GetPersonsQuery, IEnumerable<PersonDto>>
     {
-        private readonly IPersonService _personService;
+        private readonly IPersonRepository _repository;
 
-        public GetPersonsQueryHandler(IPersonService personService)
+        public GetAllPeopleQueryHandler(IPersonRepository repository)
         {
-            _personService = personService;
+            _repository = repository;
         }
 
         public async Task<IEnumerable<PersonDto>> Handle(GetPersonsQuery request, CancellationToken cancellationToken)
         {
-            return await _personService.GetAllPeopleAsync();
+            try
+            {
+                var people = await _repository.GetAllAsync();
+
+                return people.Select(person => new PersonDto
+                {
+                    Id = person.Id,
+                    FirstName = person.FirstName,
+                    LastName = person.LastName,
+                    Age = person.DateOfBirth.Age
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to retrieve people.", ex);
+            }
         }
     }
 }

@@ -5,5 +5,6 @@ namespace TaskTracker.Application.Features.People.Queries
 {
     public class GetPersonsQuery : IRequest<IEnumerable<PersonDto>>
     {
+        public GetPersonsQuery() { }
     }
 }
