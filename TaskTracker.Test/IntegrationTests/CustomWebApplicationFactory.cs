@@ -18,7 +18,7 @@ namespace TaskTracker.Test.IntegrationTests
                 var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<TaskTrackerDbContext>));
                 if (descriptor != null) services.Remove(descriptor);
 
-                services.AddDbContext<TaskTrackerDbContext>(options => options.UseInMemoryDatabase("TestDb"));
+                services.AddDbContext<TaskTrackerDbContext>(options => options.UseInMemoryDatabase($"TestDb_{Guid.NewGuid()}"));
 
                 var sp = services.BuildServiceProvider();
                 using var scope = sp.CreateScope();
