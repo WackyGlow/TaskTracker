@@ -44,9 +44,10 @@ namespace TaskTracker.Test.UnitTests.Application.Handlers.Projects
         public async Task UpdateProject_WhenFound_ReturnsDto()
         {
             var project = new Project("Name", "Desc", DateTime.UtcNow);
-            typeof(Project).GetProperty("Id")!.SetValue(project, Guid.NewGuid());
-            _projectRepo.Setup(r => r.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(project);
-            var command = new UpdateProjectCommand { Id = 1, Name = "New", Description = "Desc", StartDate = DateTime.UtcNow };
+            var projectId = Guid.NewGuid();
+            typeof(Project).GetProperty("Id")!.SetValue(project, projectId);
+            _projectRepo.Setup(r => r.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(project);
+            var command = new UpdateProjectCommand { Id = projectId, Name = "New", Description = "Desc", StartDate = DateTime.UtcNow };
             var handler = new UpdateProjectCommandHandler(_projectRepo.Object, _personRepo.Object);
 
             var result = await handler.Handle(command, CancellationToken.None);
