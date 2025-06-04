@@ -34,11 +34,11 @@ namespace TaskTracker.WebAPI.Controllers
             }
         }
 
-        [HttpPut("{id:guid}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProjectCommand command)
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateProjectCommand command)
         {
-            if (id != command.Id)
-                return BadRequest("Project ID mismatch.");
+            if (command == null)
+                return BadRequest("Request body is required.");
 
             try
             {
@@ -47,7 +47,7 @@ namespace TaskTracker.WebAPI.Controllers
             }
             catch (KeyNotFoundException)
             {
-                return NotFound($"Project with ID {id} not found.");
+                return NotFound($"Project with ID {command.Id} not found.");
             }
             catch (Exception ex)
             {
@@ -55,17 +55,17 @@ namespace TaskTracker.WebAPI.Controllers
             }
         }
 
-        [HttpDelete("{id:guid}")]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody] DeleteProjectCommand command)
         {
             try
             {
-                var result = await _mediator.Send(new DeleteProjectCommand(id));
+                var result = await _mediator.Send(command);
                 return Ok(result);
             }
             catch (KeyNotFoundException)
             {
-                return NotFound($"Project with ID {id} not found.");
+                return NotFound($"Project with ID {command.Id} not found.");
             }
             catch (Exception ex)
             {
