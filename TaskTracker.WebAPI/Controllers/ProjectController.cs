@@ -1,43 +1,63 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using TaskTracker.Application.Features.Projects.Commands;
+using TaskTracker.Application.Features.Projects.Queries;
 
 namespace TaskTracker.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ProjectController : ControllerBase
     {
-        // GET: api/<ProjectController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IMediator _mediator;
+
+        public ProjectController(IMediator mediator)
         {
-            return new string[] { "value1", "value2" };
+            _mediator = mediator;
         }
 
-        // GET api/<ProjectController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<ProjectController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Create([FromBody] CreateProjectCommand command)
         {
+            if (command == null)
+                return BadRequest("Request body is required.");
+
+            var result = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
-        // PUT api/<ProjectController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProjectCommand command)
         {
+            if (id != command.Id)
+                return BadRequest("Project ID mismatch.");
+
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
-        // DELETE api/<ProjectController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id)
         {
+            var result = await _mediator.Send(new DeleteProjectCommand(id));
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _mediator.Send(new GetProjectsQuery());
+            return Ok(result);
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var result = await _mediator.Send(new GetProjectByIdQuery(id));
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
         }
     }
 }
