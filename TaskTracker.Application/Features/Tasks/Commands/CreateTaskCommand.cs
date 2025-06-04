@@ -1,5 +1,6 @@
 ﻿using MediatR;
-using TaskTracker.Application.DTOs;
+using TaskTracker.Application.Features.People.Dtos;
+using TaskTracker.Application.Features.Tasks.Dtos;
 
 namespace TaskTracker.Application.Features.Tasks.Commands
 {
