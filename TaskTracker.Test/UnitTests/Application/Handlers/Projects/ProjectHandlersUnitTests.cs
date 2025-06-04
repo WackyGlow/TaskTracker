@@ -88,10 +88,10 @@ namespace TaskTracker.Test.UnitTests.Application.Handlers.Projects
         {
             var project = new Project("Name", "Desc", DateTime.UtcNow);
             typeof(Project).GetProperty("Id")!.SetValue(project, Guid.NewGuid());
-            _projectRepo.Setup(r => r.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(project);
+            _projectRepo.Setup(r => r.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(project);
             var handler = new GetProjectByIdQueryHandler(_projectRepo.Object);
 
-            var result = await handler.Handle(new GetProjectByIdQuery(1), CancellationToken.None);
+            var result = await handler.Handle(new GetProjectByIdQuery(project.Id), CancellationToken.None);
 
             result!.Id.Should().Be(project.Id);
         }
