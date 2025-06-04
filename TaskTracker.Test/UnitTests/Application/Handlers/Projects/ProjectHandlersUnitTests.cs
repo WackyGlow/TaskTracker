@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
-using TaskTracker.Application.Features.People.Dtos;
 using TaskTracker.Application.Features.Projects.Commands;
 using TaskTracker.Application.Features.Projects.Commands.Handlers;
 using TaskTracker.Application.Features.Projects.Dtos;
