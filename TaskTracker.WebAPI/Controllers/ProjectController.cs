@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TaskTracker.Application.Features.Projects.Commands;
 using TaskTracker.Application.Features.Projects.Queries;
+using TaskTracker.Application.Features.Projects.Dtos;
 
 namespace TaskTracker.WebAPI.Controllers
 {
@@ -22,42 +23,85 @@ namespace TaskTracker.WebAPI.Controllers
             if (command == null)
                 return BadRequest("Request body is required.");
 
-            var result = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+            try
+            {
+                ProjectDto result = await _mediator.Send(command);
+                return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred while creating the project: {ex.Message}");
+            }
         }
 
-        [HttpPut("{id:guid}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProjectCommand command)
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateProjectCommand command)
         {
-            if (id != command.Id)
-                return BadRequest("Project ID mismatch.");
+            if (command == null)
+                return BadRequest("Request body is required.");
 
-            var result = await _mediator.Send(command);
-            return Ok(result);
+            try
+            {
+                ProjectDto result = await _mediator.Send(command);
+                return Ok(result);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound($"Project with ID {command.Id} not found.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred while updating the project: {ex.Message}");
+            }
         }
 
-        [HttpDelete("{id:guid}")]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody] DeleteProjectCommand command)
         {
-            var result = await _mediator.Send(new DeleteProjectCommand(id));
-            return Ok(result);
+            try
+            {
+                var result = await _mediator.Send(command);
+                return Ok(result);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound($"Project with ID {command.Id} not found.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred while deleting the project: {ex.Message}");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _mediator.Send(new GetProjectsQuery());
-            return Ok(result);
+            try
+            {
+                var result = await _mediator.Send(new GetProjectsQuery());
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred while retrieving projects: {ex.Message}");
+            }
         }
 
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var result = await _mediator.Send(new GetProjectByIdQuery(id));
-            if (result == null)
-                return NotFound();
+            try
+            {
+                var result = await _mediator.Send(new GetProjectByIdQuery(id));
+                if (result == null)
+                    return NotFound($"Project with ID {id} not found.");
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred while retrieving the project: {ex.Message}");
+            }
         }
     }
 }
