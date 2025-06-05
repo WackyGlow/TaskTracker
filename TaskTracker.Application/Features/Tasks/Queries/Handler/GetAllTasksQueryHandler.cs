@@ -1,26 +1,32 @@
-﻿using MediatR;
-using TaskTracker.Application.DTOs;
-using TaskTracker.Domain.Interfaces.Services;
+﻿using AutoMapper;
+using MediatR;
+using TaskTracker.Application.Features.Tasks.Dtos;
+using TaskTracker.Domain.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Features.Tasks.Queries.Handler
 {
     public class GetAllTasksQueryHandler : IRequestHandler<GetAllTasksQuery, IEnumerable<TaskItemDto>>
     {
-        private readonly ITaskService _taskService;
+        private readonly ITaskRepository _taskRepository;
+        private readonly IMapper _mapper;
 
-        public GetAllTasksQueryHandler(ITaskService taskService)
-        { 
-            _taskService = taskService;
+        public GetAllTasksQueryHandler(ITaskRepository taskRepository, IMapper mapper)
+        {
+            _taskRepository = taskRepository;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<TaskItemDto>> Handle(GetAllTasksQuery request, CancellationToken cancellationToken)
         {
-            // Call the service to retrieve all tasks
-            var tasks = await _taskService.GetAllTasksAsync();
-
-            // Return the retrieved tasks
-            return tasks;
+            try
+            {
+                var tasks = await _taskRepository.GetAllAsync();
+                return _mapper.Map<IEnumerable<TaskItemDto>>(tasks);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Failed to retrieve all tasks.", ex);
+            }
         }
-
     }
 }

@@ -1,26 +1,35 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskTracker.Application.DTOs;
-using TaskTracker.Domain.Interfaces.Services;
+﻿using AutoMapper;
+using MediatR;
+using TaskTracker.Application.Features.Tasks.Dtos;
+using TaskTracker.Domain.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Features.Tasks.Queries.Handler
 {
     public class GetTaskByIdQueryHandler : IRequestHandler<GetTaskByIdQuery, TaskItemDto>
     {
-        private readonly ITaskService _taskService;
+        private readonly ITaskRepository _taskRepository;
+        private readonly IMapper _mapper;
 
-        public GetTaskByIdQueryHandler(ITaskService taskService)
+        public GetTaskByIdQueryHandler(ITaskRepository taskRepository, IMapper mapper)
         {
-            _taskService = taskService;
+            _taskRepository = taskRepository;
+            _mapper = mapper;
         }
 
         public async Task<TaskItemDto> Handle(GetTaskByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _taskService.GetTaskByIdAsync(request.Id);
+            try
+            {
+                var task = await _taskRepository.GetByIdAsync(request.Id);
+                if (task == null)
+                    throw new KeyNotFoundException($"Task with ID {request.Id} not found.");
+
+                return _mapper.Map<TaskItemDto>(task);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Failed to retrieve task with ID {request.Id}.", ex);
+            }
         }
     }
 }
