@@ -12,7 +12,6 @@ namespace TaskTracker.Application.Features.People.Dtos
         public string FirstName { get; init; } = string.Empty;
         public string LastName { get; init; } = string.Empty;
         public int Age { get; init; }
-
         public string FullName => $"{FirstName} {LastName}";
     }
 }

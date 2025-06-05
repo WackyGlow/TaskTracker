@@ -1,3 +1,4 @@
+using AutoMapper;
 using MediatR;
 using TaskTracker.Application.Features.People.Dtos;
 using TaskTracker.Application.Features.Projects.Dtos;
@@ -10,47 +11,41 @@ namespace TaskTracker.Application.Features.Projects.Commands.Handlers
     {
         private readonly IProjectRepository _repository;
         private readonly IPersonRepository _personRepository;
+        private readonly IMapper _mapper;
 
-        public CreateProjectCommandHandler(IProjectRepository repository, IPersonRepository personRepository)
+
+        public CreateProjectCommandHandler(IProjectRepository repository, IPersonRepository personRepository, IMapper mapper)
         {
             _repository = repository;
             _personRepository = personRepository;
+            _mapper = mapper;
         }
 
         public async Task<ProjectDto> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
-            var project = new Project(request.Name, request.Description, request.StartDate);
-
-            if (request.ContributorIds != null)
+            try
             {
-                foreach (var contributorId in request.ContributorIds)
+                var project = new Project(request.Name, request.Description, request.StartDate);
+
+                if (request.ContributorIds?.Any() == true)
                 {
-                    var person = await _personRepository.GetByIdAsync(contributorId);
-                    if (person != null)
+                    project.Contributors.Clear();
+                    foreach (var contributorId in request.ContributorIds)
                     {
-                        project.Contributors.Add(person);
+                        var person = await _personRepository.GetByIdAsync(contributorId);
+                        if (person != null)
+                            project.Contributors.Add(person);
                     }
                 }
+
+                await _repository.AddAsync(project);
+
+                return _mapper.Map<ProjectDto>(project);
             }
-
-            await _repository.AddAsync(project);
-
-            return new ProjectDto
+            catch (Exception ex)
             {
-                Id = project.Id,
-                Name = project.Name,
-                Description = project.Description,
-                StartDate = project.StartDate,
-                EndDate = project.EndDate,
-                IsCompleted = project.IsCompleted,
-                Contributors = project.Contributors.Select(p => new PersonDto
-                {
-                    Id = p.Id,
-                    FirstName = p.FirstName,
-                    LastName = p.LastName,
-                    Age = p.DateOfBirth.Age
-                }).ToList()
-            };
+                throw new ApplicationException("An error occurred while creating the project.", ex);
+            }
         }
     }
 }

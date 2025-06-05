@@ -9,6 +9,9 @@ namespace TaskTracker.Application.Features.Projects.Queries
 
         public GetProjectByIdQuery(Guid id)
         {
+            if (id == Guid.Empty)
+                throw new ArgumentException("Id cannot be empty.", nameof(id));
+
             Id = id;
         }
     }

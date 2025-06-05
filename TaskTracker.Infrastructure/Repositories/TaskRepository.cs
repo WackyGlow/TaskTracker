@@ -14,7 +14,7 @@ namespace TaskTracker.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<TaskItem?> GetByIdAsync(int id)
+        public async Task<TaskItem?> GetByIdAsync(Guid id)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace TaskTracker.Infrastructure.Repositories
             }
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             try
             {

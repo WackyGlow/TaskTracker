@@ -14,7 +14,7 @@ namespace TaskTracker.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<Project?> GetByIdAsync(int id)
+        public async Task<Project?> GetByIdAsync(Guid id)
         {
             try
             {

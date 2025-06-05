@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using TaskTracker.Application.Features.People.Dtos;
 using TaskTracker.Domain.Interfaces.Repositories;
 
@@ -7,10 +8,12 @@ namespace TaskTracker.Application.Features.People.Queries.Handlers
     public class GetAllPeopleQueryHandler : IRequestHandler<GetPersonsQuery, IEnumerable<PersonDto>>
     {
         private readonly IPersonRepository _repository;
+        private readonly IMapper _mapper;
 
-        public GetAllPeopleQueryHandler(IPersonRepository repository)
+        public GetAllPeopleQueryHandler(IPersonRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<PersonDto>> Handle(GetPersonsQuery request, CancellationToken cancellationToken)
@@ -18,14 +21,7 @@ namespace TaskTracker.Application.Features.People.Queries.Handlers
             try
             {
                 var people = await _repository.GetAllAsync();
-
-                return people.Select(person => new PersonDto
-                {
-                    Id = person.Id,
-                    FirstName = person.FirstName,
-                    LastName = person.LastName,
-                    Age = person.DateOfBirth.Age
-                });
+                return _mapper.Map<IEnumerable<PersonDto>>(people);
             }
             catch (Exception ex)
             {

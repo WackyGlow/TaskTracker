@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using TaskTracker.Application.Features.People.Dtos;
 using TaskTracker.Domain.Entities;
 using TaskTracker.Domain.Interfaces.Repositories;
@@ -9,10 +10,12 @@ namespace TaskTracker.Application.Features.People.Commands.Handlers
     public class CreatePersonCommandHandler : IRequestHandler<CreatePersonCommand, PersonDto>
     {
         private readonly IPersonRepository _repository;
+        private readonly IMapper _mapper;
 
-        public CreatePersonCommandHandler(IPersonRepository repository)
+        public CreatePersonCommandHandler(IPersonRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<PersonDto> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
@@ -20,12 +23,7 @@ namespace TaskTracker.Application.Features.People.Commands.Handlers
             var person = new Person(Guid.NewGuid(), request.FirstName, request.LastName, new DateOfBirth(request.DateOfBirth));
             await _repository.AddAsync(person);
 
-            return new PersonDto
-            {
-                FirstName = person.FirstName,
-                LastName = person.LastName,
-                Age = person.DateOfBirth.Age
-            };
+            return _mapper.Map<PersonDto>(person);
         }
     }
 }

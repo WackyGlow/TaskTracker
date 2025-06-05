@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using TaskTracker.Application.Features.People.Dtos;
 using TaskTracker.Domain.Interfaces.Repositories;
 
@@ -7,32 +8,21 @@ namespace TaskTracker.Application.Features.People.Queries.Handlers
     public class GetPersonByIdQueryHandler : IRequestHandler<GetPersonByIdQuery, PersonDto>
     {
         private readonly IPersonRepository _repository;
+        private readonly IMapper _mapper;
 
-        public GetPersonByIdQueryHandler(IPersonRepository repository)
+        public GetPersonByIdQueryHandler(IPersonRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<PersonDto> Handle(GetPersonByIdQuery request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var person = await _repository.GetByIdAsync(request.Id);
-                if (person == null)
-                    return null;
+            var person = await _repository.GetByIdAsync(request.Id);
+            if (person == null)
+                throw new KeyNotFoundException($"Person with ID {request.Id} not found.");
 
-                return new PersonDto
-                {
-                    Id = person.Id,
-                    FirstName = person.FirstName,
-                    LastName = person.LastName,
-                    Age = person.DateOfBirth.Age
-                };
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Failed to retrieve person with ID {request.Id}.", ex);
-            }
+            return _mapper.Map<PersonDto>(person);
         }
     }
 }

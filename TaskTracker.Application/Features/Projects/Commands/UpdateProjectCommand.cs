@@ -8,13 +8,23 @@ namespace TaskTracker.Application.Features.Projects.Commands
         public Guid Id { get; }
         public string Name { get; }
         public string Description { get; }
-        public DateTime StartDate { get; }
-        public DateTime? EndDate { get; }
+        public DateTimeOffset StartDate { get; }
+        public DateTimeOffset? EndDate { get; }
         public bool IsCompleted { get; }
         public ICollection<Guid>? ContributorIds { get; }
 
-        public UpdateProjectCommand(Guid id, string name, string description, DateTime startDate, DateTime? endDate, bool isCompleted, ICollection<Guid>? contributorIds = null)
+        public UpdateProjectCommand(
+            Guid id,
+            string name,
+            string description,
+            DateTimeOffset startDate,
+            DateTimeOffset? endDate,
+            bool isCompleted,
+            ICollection<Guid>? contributorIds = null)
         {
+            if (id == Guid.Empty)
+                throw new ArgumentException("Id cannot be empty.", nameof(id));
+
             Id = id;
             Name = name;
             Description = description;

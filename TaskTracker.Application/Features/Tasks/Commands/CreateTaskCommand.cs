@@ -6,15 +6,36 @@ namespace TaskTracker.Application.Features.Tasks.Commands
 {
     public class CreateTaskCommand : IRequest<TaskItemDto>
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime DueDate { get; set; }
-        public string Category { get; set; }
-        public int Priority { get; set; }
-        public bool IsRecurring { get; set; }
-        public int? RecurrenceInterval { get; set; }
-        public string RecurrenceUnit { get; set; }
-        public ICollection<PersonDto> AssignedPersons { get; set; } // List of Persons for the assignments
-    }
+        public string Name { get; }
+        public string Description { get; }
+        public DateTime DueDate { get; }
+        public string Category { get; }
+        public int Priority { get; }
+        public bool IsRecurring { get; }
+        public int? RecurrenceInterval { get; }
+        public string RecurrenceUnit { get; }
+        public ICollection<PersonDto> AssignedPersons { get; }
 
+        public CreateTaskCommand(
+            string name,
+            string description,
+            DateTime dueDate,
+            string category,
+            int priority,
+            bool isRecurring,
+            int? recurrenceInterval,
+            string recurrenceUnit,
+            ICollection<PersonDto> assignedPersons)
+        {
+            Name = name;
+            Description = description;
+            DueDate = dueDate;
+            Category = category;
+            Priority = priority;
+            IsRecurring = isRecurring;
+            RecurrenceInterval = recurrenceInterval;
+            RecurrenceUnit = recurrenceUnit;
+            AssignedPersons = assignedPersons;
+        }
+    }
 }

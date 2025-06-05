@@ -15,9 +15,11 @@ namespace TaskTracker.Domain.Entities
         public ICollection<Project> AssignedProjects { get; private set; } = new List<Project>();
 
         // EF constructor
+        #pragma warning disable CS8618 // Non-nullable property is uninitialized    
         private Person() 
         { 
         }
+        #pragma warning restore CS8618
 
         public Person(Guid id, string firstName, string lastName, DateOfBirth dateOfBirth)
         {   

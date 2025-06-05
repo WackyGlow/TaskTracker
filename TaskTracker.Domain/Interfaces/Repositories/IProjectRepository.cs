@@ -9,7 +9,7 @@ namespace TaskTracker.Domain.Interfaces.Repositories
 {
     public interface IProjectRepository
     {
-        Task<Project?> GetByIdAsync(int id);
+        Task<Project?> GetByIdAsync(Guid id);
         Task<IEnumerable<Project>> GetAllAsync();
         Task AddAsync(Project project);
         Task UpdateAsync(Project project);

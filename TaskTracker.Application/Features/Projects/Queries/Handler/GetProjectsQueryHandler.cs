@@ -1,5 +1,5 @@
+using AutoMapper;
 using MediatR;
-using TaskTracker.Application.Features.People.Dtos;
 using TaskTracker.Application.Features.Projects.Dtos;
 using TaskTracker.Domain.Interfaces.Repositories;
 
@@ -8,32 +8,39 @@ namespace TaskTracker.Application.Features.Projects.Queries.Handler
     public class GetProjectsQueryHandler : IRequestHandler<GetProjectsQuery, IEnumerable<ProjectDto>>
     {
         private readonly IProjectRepository _projectRepository;
+        private readonly IMapper _mapper;
 
-        public GetProjectsQueryHandler(IProjectRepository projectRepository)
+        public GetProjectsQueryHandler(IProjectRepository projectRepository, IMapper mapper)
         {
             _projectRepository = projectRepository;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<ProjectDto>> Handle(GetProjectsQuery request, CancellationToken cancellationToken)
         {
-            var projects = await _projectRepository.GetAllAsync();
-
-            return projects.Select(p => new ProjectDto
+            try
             {
-                Id = p.Id,
-                Name = p.Name,
-                Description = p.Description,
-                StartDate = p.StartDate,
-                EndDate = p.EndDate,
-                IsCompleted = p.IsCompleted,
-                Contributors = p.Contributors.Select(c => new PersonDto
+                var allProjects = await _projectRepository.GetAllAsync();
+
+                // Optional filtering
+                if (request.IsCompleted.HasValue)
                 {
-                    Id = c.Id,
-                    FirstName = c.FirstName,
-                    LastName = c.LastName,
-                    Age = c.DateOfBirth.Age
-                }).ToList()
-            });
+                    allProjects = allProjects
+                        .Where(p => p.IsCompleted == request.IsCompleted.Value)
+                        .ToList();
+                }
+
+                // Pagination
+                var paged = allProjects
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize);
+
+                return _mapper.Map<IEnumerable<ProjectDto>>(paged);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Failed to retrieve projects.", ex);
+            }
         }
     }
 }

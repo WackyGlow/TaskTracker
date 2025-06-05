@@ -26,7 +26,6 @@
     <Folder Include="IntegrationTests\" />
     <Folder Include="UnitTests\Application\Handlers\" />
     <Folder Include="UnitTests\Application\AutoMapper\" />
-    <Folder Include="UnitTests\Application\Validators\" />
   </ItemGroup>
 
   <ItemGroup>

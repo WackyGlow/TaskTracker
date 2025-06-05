@@ -1,4 +1,5 @@
 using System.Reflection;
+using AutoMapper;
 using MediatR;
 using TaskTracker.Application.Features.People.Dtos;
 using TaskTracker.Application.Features.Projects.Dtos;
@@ -10,71 +11,52 @@ namespace TaskTracker.Application.Features.Projects.Commands.Handlers
     {
         private readonly IProjectRepository _projectRepository;
         private readonly IPersonRepository _personRepository;
+        private readonly IMapper _mapper;
 
-        public UpdateProjectCommandHandler(IProjectRepository projectRepository, IPersonRepository personRepository)
+        public UpdateProjectCommandHandler(IProjectRepository projectRepository, IPersonRepository personRepository, IMapper mapper)
         {
             _projectRepository = projectRepository;
             _personRepository = personRepository;
+            _mapper = mapper;
         }
 
         public async Task<ProjectDto> Handle(UpdateProjectCommand request, CancellationToken cancellationToken)
         {
-            var project = await _projectRepository.GetByIdAsync(request.Id);
-            if (project == null)
-                throw new KeyNotFoundException($"Project with ID {request.Id} not found.");
-
-            // Update basic properties via reflection since setters are private
-            SetProperty(project, nameof(project.Name), request.Name);
-            SetProperty(project, nameof(project.Description), request.Description);
-            SetProperty(project, nameof(project.StartDate), request.StartDate);
-
-            // Completion and end date
-            if (request.IsCompleted)
+            try
             {
-                project.Complete(request.EndDate ?? DateTime.UtcNow);
-            }
-            else
-            {
-                SetProperty(project, nameof(project.EndDate), request.EndDate);
-                SetProperty(project, nameof(project.IsCompleted), false);
-            }
+                var project = await _projectRepository.GetByIdAsync(request.Id);
+                if (project == null)
+                    throw new KeyNotFoundException($"Project with ID {request.Id} not found.");
 
-            // Update contributors
-            project.Contributors.Clear();
-            if (request.ContributorIds != null)
-            {
-                foreach (var contributorId in request.ContributorIds)
+                // Update domain entity
+                project.Update(
+                    request.Name,
+                    request.Description,
+                    request.StartDate,
+                    request.EndDate,
+                    request.IsCompleted
+                );
+
+                // Update contributors
+                project.Contributors.Clear();
+                if (request.ContributorIds != null)
                 {
-                    var person = await _personRepository.GetByIdAsync(contributorId);
-                    if (person != null)
-                        project.Contributors.Add(person);
+                    foreach (var contributorId in request.ContributorIds)
+                    {
+                        var person = await _personRepository.GetByIdAsync(contributorId);
+                        if (person != null)
+                            project.Contributors.Add(person);
+                    }
                 }
+
+                await _projectRepository.UpdateAsync(project);
+
+                return _mapper.Map<ProjectDto>(project);
             }
-
-            await _projectRepository.UpdateAsync(project);
-
-            return new ProjectDto
+            catch (Exception ex)
             {
-                Id = project.Id,
-                Name = project.Name,
-                Description = project.Description,
-                StartDate = project.StartDate,
-                EndDate = project.EndDate,
-                IsCompleted = project.IsCompleted,
-                Contributors = project.Contributors.Select(p => new PersonDto
-                {
-                    Id = p.Id,
-                    FirstName = p.FirstName,
-                    LastName = p.LastName,
-                    Age = p.DateOfBirth.Age
-                }).ToList()
-            };
-        }
-
-        private static void SetProperty<T>(T target, string propertyName, object? value)
-        {
-            var prop = typeof(T).GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            prop?.SetValue(target, value);
+                throw new ApplicationException($"An error occurred while updating the project: {ex.Message}", ex);
+            }
         }
     }
 }

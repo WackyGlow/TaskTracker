@@ -9,6 +9,9 @@ namespace TaskTracker.Application.Features.Projects.Commands
 
         public DeleteProjectCommand(Guid id)
         {
+            if (id == Guid.Empty)
+                throw new ArgumentException("Id cannot be empty.", nameof(id));
+
             Id = id;
         }
     }

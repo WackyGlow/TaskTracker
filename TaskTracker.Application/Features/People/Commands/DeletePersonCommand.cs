@@ -9,6 +9,9 @@ namespace TaskTracker.Application.Features.People.Commands
 
         public DeletePersonCommand(Guid personId)
         {
+            if (personId == Guid.Empty)
+                throw new ArgumentException("Person ID cannot be empty.", nameof(personId));
+
             PersonId = personId;
         }
     }
